@@ -1,11 +1,13 @@
 # Mansion Vision — The Modern Hillside Palace (Example 02)
 
-Cinematic exterior tour of the **Example 02 — Modern Hillside Palace** estate from
-`MANSION VISION — AI Master Prompt Guide`, built as an AI-still sequence with a slow,
-eased camera drift (Ken Burns), elegant dissolves, and silent pacing.
+Cinematic tour of the **Example 02 — Modern Hillside Palace** estate from
+`MANSION VISION — AI Master Prompt Guide`. Act I orbits the exterior at blue hour;
+Act II steps inside — from the foyer's floating stair to the rooftop sky lounge and
+the home cinema. AI-still sequence, slow eased camera drift (Ken Burns), gold
+dissolves, silent pacing.
 
 **Deliverable:** `out/mansion-vision-the-modern-hillside-palace.mp4`
-1920×1080 · 30 fps · ≈ 2 min 15 s · H.264 (yuv420p) · silent · ~5 Mbps
+1920×1080 · 30 fps · ≈ 3 min 51 s · H.264 (yuv420p) · silent · ~5 Mbps
 
 ## The estate (look bible)
 
@@ -15,8 +17,10 @@ gold, **a living green roof** with a rooftop sky lounge, **three terraced levels
 stepping down the slope, an **infinity-edge pool** glowing turquoise, **Canary
 Island date palms** and **sculpted topiary**, white stucco + black marble accents,
 **blue-hour twilight** with panoramic ocean views. Elle Decor quality, photorealistic.
+Interiors carry the same grammar inward: curved white concrete, polished black
+marble, travertine, warm cove lighting, champagne brass, wide-plank oak.
 
-## Journey (clockwise orbit, arrival → night)
+## Act I — Exterior (arrival → deepest dusk)
 
 | # | Shot file | Beat | Camera |
 |---|-----------|------|--------|
@@ -31,33 +35,46 @@ Island date palms** and **sculpted topiary**, white stucco + black marble accent
 | 09 | `08-from-ocean-bluff.jpg` | The Bluff — From the Ocean | push in 1.06→1.16 |
 | 10 | `09-west-facade-deepest-dusk.jpg` | West Facade — Deepest Blue Hour | push in 1.00→1.10 |
 
-Bookended by a gold-on-black **MANSION VISION** title card and end card
+→ gold divider card **INSIDE THE PALACE**
+
+## Act II — Interior (foyer → sky lounge → cinema)
+
+| # | Shot file | Beat | Camera |
+|---|-----------|------|--------|
+| 11 | `int-01-entry.jpg` | The Entry — Floating Stair | push in 1.00→1.14 |
+| 12 | `int-02-living-salon.jpg` | The Grand Living Salon | pull back 1.14→1.00 |
+| 13 | `int-03-kitchen.jpg` | The Chef's Kitchen | push in 1.00→1.16 |
+| 14 | `int-04-dining.jpg` | The Dining Room — Ocean Panorama | pan L→R @ 1.16× |
+| 15 | `int-05-library.jpg` | The Library & Fireplace | push in 1.00→1.18 |
+| 16 | `int-06-primary-suite.jpg` | The Primary Suite | pull back 1.15→1.00 |
+| 17 | `int-07-spa-bath.jpg` | The Spa Bath | push in 1.00→1.14 |
+| 18 | `int-08-sky-lounge.jpg` | The Rooftop Sky Lounge | pan L→R @ 1.16× |
+| 19 | `int-09-cinema.jpg` | The Home Cinema | push in 1.00→1.18 |
+
+Bookended by the gold-on-black **MANSION VISION** title card and end card
 (letterspaced serif caps, matching the guide cover). 1.6 s `xfade` dissolves,
-subtle vignette, whisper of film grain, per-shot gold lower-third captions with a
+subtle vignette, whisper of film grain, per-scene gold lower-third captions with a
 soft scrim.
 
 ## Rebuild
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install pillow imageio-ffmpeg
-.venv/bin/python build/make_cards.py     # title/end cards + caption chips
-.venv/bin/python build/build_video.py    # stills -> 14 s clips -> xfade chain -> final MP4
+.venv/bin/python build/make_cards.py     # title / divider / end + caption chips
+.venv/bin/python build/build_video.py    # stills -> clips -> xfade chain -> MP4
 ```
 
 Source stills live in `assets/stills/` (generated, kept for reproducibility).
 `out/` is git-ignored — rebuild locally.
 
-## Extending toward the full 2–5 minute journey
+## Extending further
 
-Two planned shots were not generated this pass (image-generation cap):
+Still planned (never generated — image-generation cap):
 
-- `11-pool-symmetrical.jpg` — symmetrical pool alignment shot (closing hero candidate)
+- `11-pool-symmetrical.jpg` — symmetrical pool alignment (closing-hero candidate)
 - `12-closing-hero.jpg` — lower-lawn closing hero at deepest dusk
 
-Add rows to `SHOTS` in `build/build_video.py` (+ a matching caption in
-`build/make_cards.py`) and rebuild. Suggested next beats: entry hall approach at
-driver-drop-off, pool steps close-up, topiary garden axis, glass-bridge link to the
-guest wing, helicopterpad/approach, and a dawn "morning after" epilogue.
-
-To make the journey longer without new stills, raise `SHOT_D` (currently 14 s) or
-`XF` (currently 1.6 s) — but new angles are the better lever.
+Practical levers: add rows to `EXTERIOR_SHOTS` / `INTERIOR_SHOTS` in
+`build/build_video.py` (+ matching captions in `build/make_cards.py`), or raise
+`SHOT_D` / `INTERIOR_D` / `XF`. Good next beats: arrival gate + intercom, pool-steps
+macro, topiary garden axis, guest-wing link, dawn "morning after" epilogue.
