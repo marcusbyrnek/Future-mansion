@@ -67,6 +67,37 @@ python3 -m venv .venv && .venv/bin/pip install pillow imageio-ffmpeg
 Source stills live in `assets/stills/` (generated, kept for reproducibility).
 `out/` is git-ignored — rebuild locally.
 
+## Interactive 3D — the palace, walkable
+
+Besides the film, the repo now contains a real-time 3D recreation of the estate
+(Three.js r180, vendored in `assets/vendor/` — no CDN, no build step):
+
+```bash
+python3 -m http.server 8080 -b 0.0.0.0   # then open http://localhost:8080
+```
+
+- **Play the Tour** — 150 s slow cinematic ride (CatmullRom spline): motor court →
+  garden → east terraces → pool deck → infinity edge → west facade → aerial
+  green-roof reveal → east descent. Gold captions, thin progress bar.
+- **Free Look** — drag to orbit, scroll to zoom.
+- **Ambience** — optional generated brown-noise ocean (off by default).
+
+Scene features: three crescent slabs with curved glass curtain walls (slim bronze
+mullions), warm emissive interiors (canvas-painted glow with furniture silhouettes),
+cove light arcs, living green roof with parapet + glass rail + sky lounge
+(black-marble bar, bottle shelf, sofas, fire pit), infinity-edge pool (animated
+caustics shader + underwater glow), motor court, curved drive, gate pillars,
+black grand tourer, topiary, Canary Island date palms (procedural), cypresses,
+animated dusk ocean with ember glitter lane, ember horizon + afterglow sun,
+stars, cliff-face bluff, rolling hill silhouettes.
+
+Files: `index.html` · `assets/js/mansion.js` · `assets/js/textures.js` ·
+`assets/vendor/three.core.min.js` / `three.module.min.js`.
+
+Caveats (honest): this is real-time stylized CG, not photoreal render — it cannot
+match the AI stills' fidelity. Interior rooms are implied through glowing glass,
+not walk-in geometry; that is the next big slice if wanted (foyer + salon first).
+
 ## Extending further
 
 Still planned (never generated — image-generation cap):

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mansion Vision — The Modern Hillside Palace · Interactive 3D</title>
+<meta name="description" content="A slow, cinematic interactive 3D tour of The Modern Hillside Palace — Example 02 from MANSION VISION: curved white concrete, a living green roof, an infinity-edge pool, blue-hour twilight." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🏛️</text></svg>" />
+<style>
+  :root {
+    --gold: #d4af37;
+    --gold-soft: #e9d9a0;
+    --gold-dim: #967e44;
+    --ink: #06070c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: var(--ink); }
+  body { font-family: Didot, 'Bodoni MT', 'Playfair Display', Georgia, 'Times New Roman', serif; }
+
+  #scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
+  #scene:active { cursor: grabbing; }
+
+  /* ---------- overlay chrome ---------- */
+  .overlay { position: fixed; z-index: 10; pointer-events: none; user-select: none; }
+
+  .brand { top: 26px; left: 34px; }
+  .brand h1 {
+    font-size: 21px; font-weight: 500; letter-spacing: 0.42em; color: var(--gold-soft);
+    text-shadow: 0 2px 18px rgba(0,0,0,.75);
+  }
+  .brand h1 .thin { color: var(--gold); }
+  .brand p {
+    margin-top: 7px; font-size: 10px; letter-spacing: 0.34em; color: rgba(233,217,160,.62);
+    text-transform: uppercase;
+  }
+
+  .controls { top: 26px; right: 30px; display: flex; gap: 10px; pointer-events: auto; }
+  .btn {
+    pointer-events: auto; cursor: pointer;
+    font-family: inherit; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--gold-soft); background: rgba(8,9,14,.55); border: 1px solid rgba(212,175,55,.38);
+    padding: 11px 18px; border-radius: 2px; backdrop-filter: blur(8px);
+    transition: all .25s ease; white-space: nowrap;
+  }
+  .btn:hover { border-color: var(--gold); color: #fff; box-shadow: 0 0 22px rgba(212,175,55,.25); }
+  .btn.active { background: rgba(212,175,55,.18); border-color: var(--gold); color: #ffe9a8; box-shadow: 0 0 26px rgba(212,175,55,.3); }
+
+  .caption-wrap { bottom: 64px; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  #caption {
+    font-size: 15px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold-soft);
+    text-shadow: 0 2px 22px rgba(0,0,0,.9); text-align: center; padding: 0 6vw;
+  }
+  .rule { width: 150px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: .8; }
+
+  .progress { bottom: 34px; left: 50%; transform: translateX(-50%); width: min(560px, 72vw); height: 1px; background: rgba(233,217,160,.14); }
+  #progress-bar { width: 100%; height: 100%; background: linear-gradient(90deg, var(--gold-dim), var(--gold-soft)); transform-origin: 0 50%; transform: scaleX(0); }
+
+  .hint { bottom: 26px; left: 34px; font-size: 9px; letter-spacing: 0.3em; color: rgba(233,217,160,.42); text-transform: uppercase; }
+  .badge { bottom: 26px; right: 34px; font-size: 9px; letter-spacing: 0.3em; color: rgba(233,217,160,.42); text-transform: uppercase; text-align: right; }
+
+  /* ---------- loading veil ---------- */
+  #veil {
+    position: fixed; inset: 0; z-index: 50; background: var(--ink);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+    transition: opacity 1.4s ease, visibility 1.4s ease;
+  }
+  #veil.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  #veil .word { font-size: 30px; letter-spacing: 0.5em; color: var(--gold-soft); text-indent: 0.5em; animation: pulse 2.4s ease-in-out infinite; }
+  #veil .sub { font-size: 10px; letter-spacing: 0.4em; color: var(--gold-dim); text-transform: uppercase; }
+  @keyframes pulse { 0%,100% { opacity: .55 } 50% { opacity: 1 } }
+
+  @media (max-width: 760px) {
+    .brand h1 { font-size: 14px; }
+    .hint, .badge { display: none; }
+    .controls { top: auto; bottom: 78px; right: 12px; flex-direction: column; gap: 8px; }
+    .btn { padding: 9px 12px; font-size: 9px; }
+    #caption { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="scene"></canvas>
+
+<div class="overlay brand">
+  <h1>MANSION <span class="thin">VISION</span></h1>
+  <p>The Modern Hillside Palace · Example 02</p>
+</div>
+
+<div class="overlay controls">
+  <button class="btn active" id="btn-play">▶&ensp;Play the Tour</button>
+  <button class="btn" id="btn-free">⤢&ensp;Free Look</button>
+  <button class="btn" id="btn-ambience">🌊&ensp;Ambience · Off</button>
+</div>
+
+<div class="overlay caption-wrap">
+  <div class="rule"></div>
+  <div id="caption">ARRIVAL — THE MOTOR COURT</div>
+  <div class="rule"></div>
+</div>
+
+<div class="overlay progress"><div id="progress-bar"></div></div>
+<div class="overlay hint">Drag to orbit · Scroll to zoom</div>
+<div class="overlay badge">Interactive 3D<br/>Elle Decor · Ai Generated</div>
+
+<div id="veil">
+  <div class="word">MANSION VISION</div>
+  <div class="sub">Entering the Palace…</div>
+</div>
+
+<script type="importmap">
+{ "imports": { "three": "./assets/vendor/three.module.min.js" } }
+</script>
+<script type="module" src="./assets/js/mansion.js"></script>
+</body>
+</html>
