@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""Assemble 'MANSION VISION — The Modern Hillside Palace' exterior tour.
+"""Assemble 'MANSION VISION — The Modern Hillside Palace' complete tour.
 
-Pass 1: each still -> 14s 1080p30 clip (eased Ken Burns + caption overlay).
-Pass 2: xfade dissolve chain + vignette + film grain -> final MP4 (silent).
+Act I (exterior): 14s eased Ken Burns stills, arrival -> deepest dusk.
+Divider: 'INSIDE THE PALACE' gold card.
+Act II (interior): 12s holds — foyer to sky lounge to home cinema.
+Pass 1 renders one clip per scene; Pass 2 chains xfade dissolves + vignette +
+film grain -> final MP4 (silent).
 """
 import math
 import os
@@ -61,8 +64,8 @@ def motion_filter(kind, z0, z1, frames, pan_dir=1):
             f"setsar=1")
 
 
-SHOTS = [
-    # (file, caption_number, motion, z0, z1, pan_dir)
+EXTERIOR_SHOTS = [
+    # (file, caption_number, motion, z0, z1, pan_dir) — 14 s holds
     ("05-arrival-motor-court.jpg",          "01", "push", 1.00, 1.15,  1),
     ("10-garden-path-approach.jpg",         "02", "push", 1.06, 1.18,  1),
     ("02-east-terraces.jpg",                "03", "panx", 1.18, None,  1),
@@ -75,9 +78,28 @@ SHOTS = [
     ("09-west-facade-deepest-dusk.jpg",     "10", "push", 1.00, 1.10,  1),
 ]
 
+INTERIOR_SHOTS = [
+    # (file, caption_number, motion, z0, z1, pan_dir) — 12 s holds
+    ("int-01-entry.jpg",                    "11", "push", 1.00, 1.14,  1),
+    ("int-02-living-salon.jpg",             "12", "pull", 1.14, 1.00,  1),
+    ("int-03-kitchen.jpg",                  "13", "push", 1.00, 1.16,  1),
+    ("int-04-dining.jpg",                   "14", "panx", 1.16, None,  1),
+    ("int-05-library.jpg",                  "15", "push", 1.00, 1.18,  1),
+    ("int-06-primary-suite.jpg",            "16", "pull", 1.15, 1.00,  1),
+    ("int-07-spa-bath.jpg",                 "17", "push", 1.00, 1.14,  1),
+    ("int-08-sky-lounge.jpg",               "18", "panx", 1.16, None,  1),
+    ("int-09-cinema.jpg",                   "19", "push", 1.00, 1.18,  1),
+]
+
+DIVIDER_D = 5.0
+INTERIOR_D = 12.0
+
 
 def render_clip(src, out_path, motion, z0, z1, pan_dir, dur, caption=None,
                 fade_in=False, fade_out=False):
+    if os.path.exists(out_path):
+        print(f"= reuse {os.path.basename(out_path)}")
+        return
     frames = int(round(dur * FPS))
     grade = "eq=contrast=1.03:saturation=1.07:brightness=-0.012"
     vf = motion_filter(motion, z0, z1, frames, pan_dir) + "," + grade
@@ -115,11 +137,23 @@ def main():
                 CARD_D, fade_in=True)
     clips.append((t_out, CARD_D))
 
-    for i, (fname, cap, motion, z0, z1, pan_dir) in enumerate(SHOTS, start=1):
+    for i, (fname, cap, motion, z0, z1, pan_dir) in enumerate(EXTERIOR_SHOTS, start=1):
         out_path = os.path.join(CLIPS, f"{i:02d}-{fname.replace('.jpg', '.mp4')}")
         render_clip(os.path.join(STILLS, fname), out_path, motion, z0, z1 or 1.0,
                     pan_dir, SHOT_D, caption=cap)
         clips.append((out_path, SHOT_D))
+
+    # section divider — into the residence
+    d_out = os.path.join(CLIPS, "50-divider.mp4")
+    render_clip(os.path.join(CARDS, "divider.png"), d_out, "push", 1.0, 1.045, 1,
+                DIVIDER_D)
+    clips.append((d_out, DIVIDER_D))
+
+    for j, (fname, cap, motion, z0, z1, pan_dir) in enumerate(INTERIOR_SHOTS, start=11):
+        out_path = os.path.join(CLIPS, f"{j:02d}-{fname.replace('.jpg', '.mp4')}")
+        render_clip(os.path.join(STILLS, fname), out_path, motion, z0, z1 or 1.0,
+                    pan_dir, INTERIOR_D, caption=cap)
+        clips.append((out_path, INTERIOR_D))
 
     # end card — gentle push, fade to black
     e_out = os.path.join(CLIPS, "99-end.mp4")

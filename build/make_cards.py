@@ -82,6 +82,18 @@ def hrule(img, cx, y, half, thickness, color):
     d.rectangle([cx - half, y, cx + half, y + thickness], fill=color)
 
 
+def make_divider():
+    img = bg_canvas()
+    f_big = ImageFont.truetype(SERIF, 100)
+    f_sub = ImageFont.truetype(SERIF, 34)
+    f_small = ImageFont.truetype(SERIF, 23)
+    gold_line(img, 348, "INSIDE THE PALACE", f_big, 13, 348, 448)
+    hrule(img, W // 2, 528, 300, 2, (168, 134, 60))
+    centered(img, 560, "THE RESIDENCE  ·  THE MODERN HILLSIDE PALACE", f_sub, 8, (232, 217, 160))
+    centered(img, 648, "AN INTERIOR TOUR — FROM FOYER TO SKY LOUNGE", f_small, 8, GOLD_DIM)
+    img.save(os.path.join(OUT, "divider.png"))
+
+
 def make_title():
     img = bg_canvas()
     f_big = ImageFont.truetype(SERIF, 126)
@@ -140,11 +152,21 @@ CAPTIONS = [
     ("08", "The Living Green Roof — Drone"),
     ("09", "The Bluff — From the Ocean"),
     ("10", "West Facade — Deepest Blue Hour"),
+    ("11", "The Entry — Floating Stair"),
+    ("12", "The Grand Living Salon"),
+    ("13", "The Chef's Kitchen"),
+    ("14", "The Dining Room — Ocean Panorama"),
+    ("15", "The Library & Fireplace"),
+    ("16", "The Primary Suite"),
+    ("17", "The Spa Bath"),
+    ("18", "The Rooftop Sky Lounge"),
+    ("19", "The Home Cinema"),
 ]
 
 if __name__ == "__main__":
     make_title()
     make_end()
+    make_divider()
     for n, t in CAPTIONS:
         make_caption(n, t)
     print("cards written to", OUT)
