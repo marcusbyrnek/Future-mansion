@@ -22,6 +22,10 @@ pace, like a drone/cinema tour. Silent (user opted out of audio/ambience).
 
 The film is **built and verified**:
 `out/mansion-vision-the-modern-hillside-palace.mp4` (rebuildable — see below)
+- **Hosted**: https://future-mansion.vercel.app streams it and offers a download
+  button. The site is the self-contained `site/` folder (film + page + thumbs),
+  which is the Vercel output dir for project **future-mansion**; the MP4 is
+  committed there on purpose. Regenerate via `build/make_site.py` then redeploy.
 - 1920×1080 · 30 fps · H.264 · yuv420p · silent
 - **2 min 29 s** total · ~3.4 Mbps
 - **Act I — Exterior** (9 s holds): title card → motor court arrival → garden
@@ -74,8 +78,9 @@ first run, editing one scene only re-renders that scene + the final xfade pass.
    user needs the file, either (a) they download via a local HTTP server / Arena
    viewer the same session, or (b) user creates the Release themselves and
    drag-drops it.
-5. **A permanent repo copy of the MP4 is intentionally not kept** — it's a 132 MB
-   media file and `out/` is git-ignored. Keep it that way.
+5. **`out/` still never ships** — but a copy of the MP4 is now committed at
+   `site/film/` (that's how the site serves it). Keep it ≤ ~90 MB (GitHub's
+   100 MB hard cap per file) or pushes and Vercel clones break.
 6. Web VS Code cannot execute anything (no terminal runtime) — pasting build
    commands there does nothing. Only real terminals work (local PC, or this
    sandbox/Arena environment).
@@ -91,13 +96,14 @@ first run, editing one scene only re-renders that scene + the final xfade pass.
   `build/make_cards.py`.
 - Film is silent by user choice. If revisited: ambient ocean synth via ffmpeg
   (`anoisesrc` + lowpass + slow gain LFO) or WebAudio for interactive pages.
-- User earlier asked about delivery repeatedly — the reliable channel is:
-  keep a process alive (`python3 -m http.server 8080 -b 0.0.0.0` in repo root),
-  have the user open `/out/mansion-vision-the-modern-hillside-palace.mp4` on the
-  preview/new-tab URL, Save Video As. Verify with
-  `curl -s -o /dev/null -w "%{http_code}" ...` before telling them.
+- Delivery is solved: the site hosts and downloads the film
+  (https://future-mansion.vercel.app). A local `python3 -m http.server 8080
+  -b 0.0.0.0` rooted at `site/` remains the same-session fallback if Vercel's
+  Deployment Protection login is in the way.
 - The 3D model (Three.js) is RETIRED per user decision ("looked decent but I
-  don't care"). Don't invest more there unless the user reopens it.
+  don't care") and is **no longer hosted** — the Vercel output dir is `site/`,
+  so only the film page ships. Sources remain at `index.html` + `assets/js/`
+  for reference; don't invest more there unless the user reopens it.
 - Style/voice of lower thirds and title: gold on near-black, letterspaced
   Didot/Bodoni-style serif — matches the prompt-guide cover.
 

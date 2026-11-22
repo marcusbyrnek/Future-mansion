@@ -68,7 +68,25 @@ python3 -m venv .venv && .venv/bin/pip install pillow imageio-ffmpeg
 Source stills live in `assets/stills/` (generated, kept for reproducibility).
 `out/` is git-ignored — rebuild locally.
 
-## Interactive 3D — the palace, walkable
+## The hosted film page (`site/`) · live at future-mansion.vercel.app
+
+The website is a self-contained folder — it is the Vercel **output directory**,
+so nothing else in the repo is served. Regenerate it after any re-cut:
+
+```bash
+# optional: a smaller-bitrate copy for slow connections (skippable; the 61 MB
+# CRF-21 master already streams fine and is what the download button serves)
+.venv/bin/python build/make_web_cut.py            # -> site/film/*.mp4 @ ~2800 kb/s
+# page + poster + per-chapter thumbnails, timestamps derived from build_video.py
+.venv/bin/python build/make_site.py               # -> site/index.html, site/img/*
+```
+
+`make_site.py` prefers an existing `site/film/` cut, else falls back to the
+`out/` master. Commit `site/`, then Vercel redeploys (project **future-mansion**,
+`outputDirectory = site`). The MP4 lives in git on purpose — it is the only way
+the deployment can serve and offer it for download.
+
+## Interactive 3D — retired (not hosted)
 
 Besides the film, the repo now contains a real-time 3D recreation of the estate
 (Three.js r180, vendored in `assets/vendor/` — no CDN, no build step):
