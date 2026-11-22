@@ -23,9 +23,9 @@ CLIPS = os.path.join(OUT_DIR, "clips")
 os.makedirs(CLIPS, exist_ok=True)
 
 W, H, FPS = 1920, 1080, 30
-SHOT_D = 14.0
-CARD_D = 6.0
-XF = 1.6          # dissolve length (s)
+SHOT_D = 9.0
+CARD_D = 5.0
+XF = 1.3          # dissolve length (s)
 UP_W, UP_H = 3344, 1882   # 2x source upscale for smooth zoompan
 
 
@@ -91,8 +91,8 @@ INTERIOR_SHOTS = [
     ("int-09-cinema.jpg",                   "19", "push", 1.00, 1.18,  1),
 ]
 
-DIVIDER_D = 5.0
-INTERIOR_D = 12.0
+DIVIDER_D = 4.0
+INTERIOR_D = 8.0
 
 
 def render_clip(src, out_path, motion, z0, z1, pan_dir, dur, caption=None,
@@ -183,7 +183,7 @@ def main():
     final_path = os.path.join(OUT_DIR, "mansion-vision-the-modern-hillside-palace.mp4")
     args = [FFMPEG, "-y", "-hide_banner", "-loglevel", "error", *inputs,
             "-filter_complex", filter_complex, "-map", "[vout]",
-            "-c:v", "libx264", "-preset", "medium", "-crf", "19",
+            "-c:v", "libx264", "-preset", "medium", "-crf", "21",
             "-movflags", "+faststart", "-r", str(FPS), final_path]
     run(args)
     print(f"\nFinal: {final_path}")
