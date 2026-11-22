@@ -23,13 +23,13 @@ pace, like a drone/cinema tour. Silent (user opted out of audio/ambience).
 The film is **built and verified**:
 `out/mansion-vision-the-modern-hillside-palace.mp4` (rebuildable — see below)
 - 1920×1080 · 30 fps · H.264 · yuv420p · silent
-- **3 min 51 s** total · ~5 Mbps
-- **Act I — Exterior** (14 s holds): title card → motor court arrival → garden
+- **2 min 29 s** total · ~3.4 Mbps
+- **Act I — Exterior** (9 s holds): title card → motor court arrival → garden
   approach → terraced east profile → infinity pool hero → ocean horizon → curved
   concrete & glass → rooftop sky lounge (exterior) → aerial green roof → bluff
   from ocean → west facade at deepest blue hour
 - Gold divider card **INSIDE THE PALACE**
-- **Act II — Interior** (12 s holds): entry & floating stair → grand living salon
+- **Act II — Interior** (8 s holds): entry & floating stair → grand living salon
   → chef's kitchen → dining panorama → library → primary suite → spa bath →
   rooftop sky lounge → home cinema
 - End card: MANSION VISION / Example 02 / AI-generated line

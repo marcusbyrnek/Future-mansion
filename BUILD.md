@@ -7,7 +7,8 @@ the home cinema. AI-still sequence, slow eased camera drift (Ken Burns), gold
 dissolves, silent pacing.
 
 **Deliverable:** `out/mansion-vision-the-modern-hillside-palace.mp4`
-1920×1080 · 30 fps · ≈ 3 min 51 s · H.264 (yuv420p) · silent · ~5 Mbps
+1920×1080 · 30 fps · ≈ 2 min 29 s · H.264 (yuv420p) · silent · ~3.4 Mbps
+(paced 9 s exterior / 8 s interior holds, 1.3 s dissolves, CRF 21)
 
 ## The estate (look bible)
 
@@ -52,7 +53,7 @@ marble, travertine, warm cove lighting, champagne brass, wide-plank oak.
 | 19 | `int-09-cinema.jpg` | The Home Cinema | push in 1.00→1.18 |
 
 Bookended by the gold-on-black **MANSION VISION** title card and end card
-(letterspaced serif caps, matching the guide cover). 1.6 s `xfade` dissolves,
+(letterspaced serif caps, matching the guide cover). 1.3 s `xfade` dissolves,
 subtle vignette, whisper of film grain, per-scene gold lower-third captions with a
 soft scrim.
 
