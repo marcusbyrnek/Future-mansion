@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mansion Vision — The Modern Hillside Palace · The Film</title>
+<meta name="description" content="A 2:29 silent cinematic tour of The Modern Hillside Palace — curved white concrete, a living green roof and an infinity-edge pool at blue hour. 1920x1080, 61 MB MP4, free to download." />
+<meta property="og:type" content="video.movie" />
+<meta property="og:title" content="Mansion Vision — The Modern Hillside Palace" />
+<meta property="og:description" content="A 2:29 silent cinematic tour of The Modern Hillside Palace — curved white concrete, a living green roof and an infinity-edge pool at blue hour. 1920x1080, 61 MB MP4, free to download." />
+<meta property="og:url" content="https://future-mansion.vercel.app/" />
+<meta property="og:image" content="https://future-mansion.vercel.app/img/poster.jpg" />
+<meta property="og:video" content="https://future-mansion.vercel.app/film/mansion-vision-the-modern-hillside-palace.mp4" />
+<meta property="og:video:type" content="video/mp4" />
+<meta property="og:video:width" content="1920" />
+<meta property="og:video:height" content="1080" />
+<meta name="twitter:card" content="player" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🎬</text></svg>" />
+<style>
+  :root {
+    --gold: #d4af37;
+    --gold-soft: #e9d9a0;
+    --gold-dim: #967e44;
+    --ink: #06070c;
+    --ink-2: #0b0d14;
+    --line: rgba(212, 175, 55, .22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { background: var(--ink); }
+  body {
+    font-family: Didot, 'Bodoni MT', 'Playfair Display', Georgia, 'Times New Roman', serif;
+    background:
+      radial-gradient(120% 70% at 50% -10%, rgba(212,175,55,.13), transparent 62%),
+      radial-gradient(90% 60% at 50% 110%, rgba(38,54,74,.35), transparent 70%),
+      var(--ink);
+    color: var(--gold-soft);
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 46px 26px 78px; }
+
+  /* ---------- masthead ---------- */
+  header { text-align: center; margin-bottom: 34px; }
+  .mark { font-size: clamp(24px, 4.4vw, 42px); font-weight: 500; letter-spacing: .42em; text-indent: .42em; color: var(--gold-soft); }
+  .mark .thin { color: var(--gold); }
+  .rule { width: 190px; height: 1px; margin: 20px auto; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .sub { font-size: clamp(11px, 1.5vw, 14px); letter-spacing: .32em; text-transform: uppercase; color: rgba(233,217,160,.72); }
+  .kicker { margin-top: 12px; font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold-dim); }
+
+  /* ---------- player ---------- */
+  .stage {
+    position: relative; border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+    background: #000; box-shadow: 0 40px 90px -40px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.6);
+  }
+  .stage video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; }
+  .stage .corners { position: absolute; inset: 10px; pointer-events: none; }
+  .stage .corners i { position: absolute; width: 22px; height: 22px; border: 1px solid rgba(212,175,55,.5); }
+  .stage .corners i:nth-child(1) { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+  .stage .corners i:nth-child(2) { top: 0; right: 0; border-left: 0; border-bottom: 0; }
+  .stage .corners i:nth-child(3) { bottom: 0; left: 0; border-right: 0; border-top: 0; }
+  .stage .corners i:nth-child(4) { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+
+  /* ---------- actions + specs ---------- */
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: center; margin: 26px 0 14px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none;
+    font-family: inherit; font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
+    color: #12100a; background: linear-gradient(180deg, #f0dfa6, var(--gold) 55%, #a8862f);
+    border: 1px solid #e6cd85; padding: 15px 30px; border-radius: 2px;
+    box-shadow: 0 14px 34px -14px rgba(212,175,55,.75);
+    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  }
+  .btn:hover { transform: translateY(-1px); filter: brightness(1.07); box-shadow: 0 18px 40px -14px rgba(212,175,55,.9); }
+  .btn.ghost { color: var(--gold-soft); background: rgba(8,9,14,.55); border: 1px solid rgba(212,175,55,.42); box-shadow: none; }
+  .btn.ghost:hover { border-color: var(--gold); color: #fff; box-shadow: 0 0 26px rgba(212,175,55,.22); }
+  .specs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 6px; }
+  .chip {
+    font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: rgba(233,217,160,.78);
+    border: 1px solid rgba(212,175,55,.24); border-radius: 999px; padding: 7px 13px; background: rgba(255,255,255,.02);
+    white-space: nowrap;
+  }
+  .note { text-align: center; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-dim); margin-top: 16px; }
+
+  /* ---------- chapters ---------- */
+  .acts { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 52px; }
+  .act h2 { font-size: 12px; letter-spacing: .36em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+  .act h2 span { color: rgba(233,217,160,.5); }
+  .act .hr { height: 1px; background: linear-gradient(90deg, var(--gold-dim), transparent); margin: 12px 0 8px; }
+  ol { list-style: none; }
+  ol li a {
+    display: flex; align-items: center; gap: 14px; padding: 9px 10px; border-radius: 3px;
+    text-decoration: none; color: rgba(233,217,160,.86); transition: background .2s ease, color .2s ease;
+  }
+  ol li a:hover, ol li a.active { background: rgba(212,175,55,.1); color: #fff; }
+  .t { font-variant-numeric: tabular-nums; font-size: 11px; letter-spacing: .12em; color: var(--gold-dim); min-width: 38px; }
+  ol li a:hover .t, ol li a.active .t { color: var(--gold); }
+  .th { width: 62px; height: 35px; object-fit: cover; border-radius: 2px; border: 1px solid rgba(212,175,55,.28); flex: none; opacity: .82; }
+  ol li a:hover .th { opacity: 1; border-color: var(--gold); }
+  .lb { font-size: 12.5px; letter-spacing: .13em; text-transform: uppercase; }
+
+  .lede { margin: 46px auto 0; max-width: 760px; text-align: center; font-size: 14.5px; line-height: 2; letter-spacing: .04em; color: rgba(233,217,160,.66); }
+  footer { margin-top: 54px; text-align: center; font-size: 9.5px; letter-spacing: .3em; text-transform: uppercase; color: rgba(150,126,68,.85); }
+
+  @media (max-width: 860px) {
+    .acts { grid-template-columns: 1fr; gap: 30px; }
+    .wrap { padding: 30px 16px 56px; }
+    .th { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="mark">MANSION <span class="thin">VISION</span></div>
+    <div class="rule"></div>
+    <div class="sub">The Modern Hillside Palace</div>
+    <div class="kicker">Example 02 &ensp;·&ensp; A cinematic tour at blue hour &ensp;·&ensp; 2:29</div>
+  </header>
+
+  <div class="stage">
+    <video id="film" controls playsinline preload="metadata" poster="img/poster.jpg">
+      <source src="film/mansion-vision-the-modern-hillside-palace.mp4" type="video/mp4" />
+      Your browser cannot play this video — <a href="film/mansion-vision-the-modern-hillside-palace.mp4" style="color:#e9d9a0">download the MP4</a> instead.
+    </video>
+    <div class="corners"><i></i><i></i><i></i><i></i></div>
+  </div>
+
+  <div class="actions">
+    <a class="btn" href="film/mansion-vision-the-modern-hillside-palace.mp4" download="mansion-vision-the-modern-hillside-palace.mp4">⬇&ensp;Download the film&ensp;·&ensp;61 MB</a>
+    <button class="btn ghost" id="btn-copy">🔗&ensp;Copy video link</button>
+  </div>
+
+  <div class="specs">
+    <span class="chip">1920×1080</span>
+    <span class="chip">30 fps</span>
+    <span class="chip">H.264 · MP4</span>
+    <span class="chip">61 MB</span>
+    <span class="chip">~3435 kb/s</span>
+    <span class="chip">Silent by choice</span>
+    <span class="chip">AI-generated stills</span>
+  </div>
+  <p class="note">Act I orbits the exterior at blue hour &ensp;·&ensp; Act II steps inside — foyer to sky lounge to home cinema</p>
+
+  <div class="acts">
+    <section class="act">
+      <h2>Act I &ensp;<span>· The Exterior</span></h2>
+      <div class="hr"></div>
+      <ol id="act-1"><li><a href="#" data-t="3.70"><span class="t">0:04</span><img class="th" src="img/01.jpg" alt="" loading="lazy" /><span class="lb">Arrival — The Motor Court</span></a></li><li><a href="#" data-t="11.40"><span class="t">0:11</span><img class="th" src="img/02.jpg" alt="" loading="lazy" /><span class="lb">The Garden Approach</span></a></li><li><a href="#" data-t="19.10"><span class="t">0:19</span><img class="th" src="img/03.jpg" alt="" loading="lazy" /><span class="lb">The Terraced East Profile</span></a></li><li><a href="#" data-t="26.80"><span class="t">0:27</span><img class="th" src="img/04.jpg" alt="" loading="lazy" /><span class="lb">The Infinity Pool — Twilight</span></a></li><li><a href="#" data-t="34.50"><span class="t">0:34</span><img class="th" src="img/05.jpg" alt="" loading="lazy" /><span class="lb">Infinity Edge — Ocean Horizon</span></a></li><li><a href="#" data-t="42.20"><span class="t">0:42</span><img class="th" src="img/06.jpg" alt="" loading="lazy" /><span class="lb">Curved Concrete &amp; Glass</span></a></li><li><a href="#" data-t="49.90"><span class="t">0:50</span><img class="th" src="img/07.jpg" alt="" loading="lazy" /><span class="lb">The Rooftop Sky Lounge</span></a></li><li><a href="#" data-t="57.60"><span class="t">0:58</span><img class="th" src="img/08.jpg" alt="" loading="lazy" /><span class="lb">The Living Green Roof — Drone</span></a></li><li><a href="#" data-t="65.30"><span class="t">1:05</span><img class="th" src="img/09.jpg" alt="" loading="lazy" /><span class="lb">The Bluff — From the Ocean</span></a></li><li><a href="#" data-t="73.00"><span class="t">1:13</span><img class="th" src="img/10.jpg" alt="" loading="lazy" /><span class="lb">West Facade — Deepest Blue Hour</span></a></li></ol>
+    </section>
+    <section class="act">
+      <h2>Act II &ensp;<span>· The Interior</span></h2>
+      <div class="hr"></div>
+      <ol id="act-2"><li><a href="#" data-t="83.40"><span class="t">1:23</span><img class="th" src="img/11.jpg" alt="" loading="lazy" /><span class="lb">The Entry — Floating Stair</span></a></li><li><a href="#" data-t="90.10"><span class="t">1:30</span><img class="th" src="img/12.jpg" alt="" loading="lazy" /><span class="lb">The Grand Living Salon</span></a></li><li><a href="#" data-t="96.80"><span class="t">1:37</span><img class="th" src="img/13.jpg" alt="" loading="lazy" /><span class="lb">The Chef&#x27;s Kitchen</span></a></li><li><a href="#" data-t="103.50"><span class="t">1:44</span><img class="th" src="img/14.jpg" alt="" loading="lazy" /><span class="lb">The Dining Room — Ocean Panorama</span></a></li><li><a href="#" data-t="110.20"><span class="t">1:50</span><img class="th" src="img/15.jpg" alt="" loading="lazy" /><span class="lb">The Library &amp; Fireplace</span></a></li><li><a href="#" data-t="116.90"><span class="t">1:57</span><img class="th" src="img/16.jpg" alt="" loading="lazy" /><span class="lb">The Primary Suite</span></a></li><li><a href="#" data-t="123.60"><span class="t">2:04</span><img class="th" src="img/17.jpg" alt="" loading="lazy" /><span class="lb">The Spa Bath</span></a></li><li><a href="#" data-t="130.30"><span class="t">2:10</span><img class="th" src="img/18.jpg" alt="" loading="lazy" /><span class="lb">The Rooftop Sky Lounge</span></a></li><li><a href="#" data-t="137.00"><span class="t">2:17</span><img class="th" src="img/19.jpg" alt="" loading="lazy" /><span class="lb">The Home Cinema</span></a></li></ol>
+    </section>
+  </div>
+
+  <p class="lede">
+    A contemporary hybrid hillside palace on a Beverly Hills coastal bluff — sweeping curved
+    white concrete, floor-to-ceiling glass glowing warm gold, a living green roof with a rooftop
+    sky lounge, three terraced levels stepping down the slope, and an infinity-edge pool glowing
+    turquoise into the ocean horizon. Slow eased camera drift, gold dissolves, whisper of grain.
+  </p>
+
+  <footer>Mansion Vision &ensp;·&ensp; Example 02 &ensp;·&ensp; A I   G E N E R A T E D &ensp;·&ensp; Imagine the estate of your dreams</footer>
+</div>
+
+<script>
+  const film = document.getElementById('film');
+  const chapters = [{"t": 0.0, "label": "Title card"}, {"t": 3.7, "label": "Arrival \u2014 The Motor Court"}, {"t": 11.4, "label": "The Garden Approach"}, {"t": 19.1, "label": "The Terraced East Profile"}, {"t": 26.8, "label": "The Infinity Pool \u2014 Twilight"}, {"t": 34.5, "label": "Infinity Edge \u2014 Ocean Horizon"}, {"t": 42.2, "label": "Curved Concrete & Glass"}, {"t": 49.9, "label": "The Rooftop Sky Lounge"}, {"t": 57.6, "label": "The Living Green Roof \u2014 Drone"}, {"t": 65.3, "label": "The Bluff \u2014 From the Ocean"}, {"t": 73.0, "label": "West Facade \u2014 Deepest Blue Hour"}, {"t": 80.7, "label": "Inside the Palace"}, {"t": 83.4, "label": "The Entry \u2014 Floating Stair"}, {"t": 90.1, "label": "The Grand Living Salon"}, {"t": 96.8, "label": "The Chef's Kitchen"}, {"t": 103.5, "label": "The Dining Room \u2014 Ocean Panorama"}, {"t": 110.2, "label": "The Library & Fireplace"}, {"t": 116.9, "label": "The Primary Suite"}, {"t": 123.6, "label": "The Spa Bath"}, {"t": 130.3, "label": "The Rooftop Sky Lounge"}, {"t": 137.0, "label": "The Home Cinema"}, {"t": 143.7, "label": "End card"}];
+
+  document.querySelectorAll('[data-t]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      film.currentTime = parseFloat(a.dataset.t) + 0.05;
+      film.play();
+      film.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+
+  const links = [...document.querySelectorAll('[data-t]')];
+  film.addEventListener('timeupdate', () => {
+    let current = null;
+    for (const l of links) if (film.currentTime >= parseFloat(l.dataset.t)) current = l;
+    links.forEach(l => l.classList.toggle('active', l === current));
+  });
+
+  const btnCopy = document.getElementById('btn-copy');
+  const videoUrl = new URL('film/mansion-vision-the-modern-hillside-palace.mp4', location.href).href;
+  btnCopy.addEventListener('click', async () => {
+    const label = btnCopy.innerHTML;
+    try {
+      await navigator.clipboard.writeText(videoUrl);
+      btnCopy.innerHTML = '✓&ensp;Link copied';
+    } catch (err) {
+      btnCopy.innerHTML = videoUrl;
+      btnCopy.style.letterSpacing = '.04em';
+    }
+    setTimeout(() => { btnCopy.innerHTML = label; btnCopy.style.letterSpacing = ''; }, 2600);
+  });
+</script>
+</body>
+</html>
